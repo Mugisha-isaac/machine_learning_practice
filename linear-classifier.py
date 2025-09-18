@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.datasets import fetch_openml
 import numpy as np
 from sklearn.linear_model import SGDClassifier
+from sklearn.model_selection import cross_val_score
 
 mnist = fetch_openml('mnist_784', version='active', as_frame=False)
 mnist.keys()
@@ -26,3 +27,5 @@ sgd_clf = SGDClassifier(random_state=42)
 sgd_clf.fit(X_train,y_train_5)
 
 sgd_clf.predict([some_digit])
+
+cross_val_score(sgd_clf,X_train,y_train_5, cv=3, scoring='accuracy')
